@@ -1,0 +1,28 @@
+<table mat-table [dataSource]="beers" fxFlex="100">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+    <td mat-cell *matCellDef="let element" [routerLink]="['beers', element.id]"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="alcohol">
+    <th mat-header-cell *matHeaderCellDef> Alkohol </th>
+    <td mat-cell *matCellDef="let element"> {{element.alcohol}}% </td>
+  </ng-container>
+
+  <ng-container matColumnDef="pasteurized">
+    <th mat-header-cell *matHeaderCellDef> Pasteryzowane </th>
+    <td mat-cell *matCellDef="let element"> {{element.pasteurized}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="elementsCount">
+    <th mat-header-cell *matHeaderCellDef> Ilość składników </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-chip-list>
+        <mat-chip>{{element.elementsId.length}}</mat-chip>
+      </mat-chip-list>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="beersTableColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: beersTableColumns;"></tr>
+</table>

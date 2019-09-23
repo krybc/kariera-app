@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Lista browarów
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="breweries" fxFlex="100">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+        <td mat-cell *matCellDef="let element" [routerLink]="['/breweries', element.id]"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="beersCount">
+        <th mat-header-cell *matHeaderCellDef> Ilość piw </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-chip-list>
+            <mat-chip>{{element.beersId.length}}</mat-chip>
+          </mat-chip-list>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="breweriesTableColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: breweriesTableColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

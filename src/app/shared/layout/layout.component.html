@@ -1,0 +1,13 @@
+<mat-toolbar color="accent">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+    <span>Katalog piw</span>
+    <div>
+      <button mat-button [routerLink]="['/']">Lista piw</button>
+      <button mat-button [routerLink]="['/breweries']">Lista browarów</button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="wrapper">
+  <router-outlet></router-outlet>
+</div>
