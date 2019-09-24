@@ -37,6 +37,7 @@ export class BeerComponent implements OnInit {
 
       result.pipe(
         flatMap(([beer, elements]: [Beer, Element[]]) => {
+          console.log(beer);
           this.beer = beer;
           this.elements = elements.filter((e: Element) => beer.elementsId.find(id => id === e.id));
           return this.breweriesService.findById(beer.breweryId);

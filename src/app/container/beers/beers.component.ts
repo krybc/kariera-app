@@ -17,7 +17,9 @@ export class BeersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.beersService.findAll().subscribe(result => this.beers = result);
+    this.beersService.findAll().subscribe(result => {
+      this.beers = result;
+    });
   }
 
 }
