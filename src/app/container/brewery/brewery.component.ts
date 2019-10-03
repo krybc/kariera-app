@@ -24,8 +24,8 @@ export class BreweryComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       const result = forkJoin(
-        this.breweriesService.findById(+params.id),
-        this.beersService.findAll({ breweryId: +params.id})
+        this.breweriesService.getById(+params.id),
+        this.breweriesService.getBeers(+params.id)
       );
 
       result.subscribe(([brewery, beers]: [Brewery, Beer[]]) => {

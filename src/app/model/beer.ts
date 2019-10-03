@@ -3,6 +3,7 @@ import {Exclude, Expose, Transform, Type} from 'class-transformer';
 import {Brewery} from './brewery';
 import {Category} from './category';
 import {Element} from './element';
+import {Comment} from './comment';
 
 @Exclude()
 export class Beer {
@@ -16,6 +17,9 @@ export class Beer {
 
   @Expose({ name: 'title' })
   name: string;
+
+  @Expose()
+  description: string;
 
   @Expose({ groups: ['simple'] })
   breweryId: number;
@@ -36,6 +40,13 @@ export class Beer {
 
   @Expose()
   pasteurized: boolean;
+
+  @Expose({ groups: ['simple'] })
+  commentsId: number[];
+
+  @Expose({ groups: ['composed'] })
+  @Type(() => Comment)
+  comments: Comment[];
 
   @Expose({ groups: ['simple'] })
   elementsId: number[];

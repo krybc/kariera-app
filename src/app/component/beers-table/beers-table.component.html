@@ -11,7 +11,7 @@
 
   <ng-container matColumnDef="pasteurized">
     <th mat-header-cell *matHeaderCellDef> Pasteryzowane </th>
-    <td mat-cell *matCellDef="let element"> {{element.pasteurized}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.pasteurized | boolean}} </td>
   </ng-container>
 
   <ng-container matColumnDef="elementsCount">

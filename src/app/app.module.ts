@@ -25,6 +25,7 @@ import { BreweryComponent } from './container/brewery/brewery.component';
 import {CategoriesService} from './service/categories.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BeersTableComponent } from './component/beers-table/beers-table.component';
+import { BooleanPipe } from './pipe/boolean.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BeersTableComponent } from './component/beers-table/beers-table.compone
     BeerComponent,
     BreweriesComponent,
     BreweryComponent,
-    BeersTableComponent
+    BeersTableComponent,
+    BooleanPipe
   ],
   imports: [
     BrowserModule,

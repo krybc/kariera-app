@@ -11,7 +11,7 @@ export class CategoriesService {
     private http: HttpClient,
   ) { }
 
-  public findAll(): Observable<Category[]> {
+  public getList(): Observable<Category[]> {
     return this.http
       .get<Category[]>('/categories')
       .pipe(
@@ -19,7 +19,7 @@ export class CategoriesService {
       );
   }
 
-  public findById(id: number): Observable<Category> {
+  public getById(id: number): Observable<Category> {
     return this.http
       .get<Category>(`/categories/${id}`)
       .pipe(

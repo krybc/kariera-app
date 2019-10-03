@@ -1,29 +1,58 @@
 <div *ngIf="loading === 'success'" fxLayout="row" fxFlex="100" fxLayoutAlign="center none">
-  <mat-card fxFlex="30">
-    <mat-card-header>
-      <mat-card-title>{{ beer.name }}</mat-card-title>
-      <mat-card-subtitle>Browar: {{ brewery.name }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <img [src]="beer.imageUrl" [alt]="beer.name" class="beer-image">
-      {{ beer.strength }}
-    </mat-card-content>
-  </mat-card>
+  <div fxFlex="50">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ beer.name }}</mat-card-title>
+        <mat-card-subtitle>Browar: {{ brewery.name }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <div fxFlex="30">
+            <img [src]="beer.imageUrl" [alt]="beer.name" class="beer-image">
+          </div>
+          <div fxFlex="70">
+            <mat-list>
+              <mat-list-item>
+                <div style="width: 100%;" fxLayout="row" fxLayoutAlign="space-between center">
+                  <span>Moc</span>
+                  <mat-chip-list><mat-chip>{{beer.alcohol}}%</mat-chip></mat-chip-list>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div style="width: 100%;" fxLayout="row" fxLayoutAlign="space-between center">
+                  <span>Pasteryzowane</span>
+                  <mat-chip-list><mat-chip>{{beer.pasteurized | boolean}}</mat-chip></mat-chip-list>
+                </div>
+              </mat-list-item>
+            </mat-list>
 
-  <mat-card fxFlex="30">
-    <mat-card-header>
-      <mat-card-title>
-        Składniki
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+            <h3>Opis</h3>
+            <p>{{ beer.description }}</p>
 
-      <mat-list>
-        <mat-list-item *ngFor="let element of elements">
-          {{ element.name }}
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
+            <h3>Składniki</h3>
+            <p>
+              <span *ngFor="let element of elements">{{ element.name }},</span>
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="30">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Komentarze
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let comment of comments">
+          <h5>{{ comment.author }}</h5>
+          <p>{{ comment.content }}</p>
+          <hr>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
 
