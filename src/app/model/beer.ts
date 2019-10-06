@@ -3,10 +3,12 @@ import {BeerStrengthEnum} from '../enum/beer-strength.enum';
 export class Beer {
   id: number;
   name: string;
+  description: string;
   breweryId: number;
   categoryId: number;
   alcohol: number;
   elementsId: number[];
+  commentsId: number[];
   imageUrl: string;
 
   public get strength(): string {

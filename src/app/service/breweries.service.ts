@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Brewery} from '../model/brewery';
+import {Beer} from '../model/beer';
 
 @Injectable()
 export class BreweriesService {
@@ -9,11 +10,15 @@ export class BreweriesService {
     private http: HttpClient,
   ) { }
 
-  public findAll(): Observable<Brewery[]> {
+  public getList(): Observable<Brewery[]> {
     return this.http.get<Brewery[]>('/breweries');
   }
 
-  public findById(id: number): Observable<Brewery> {
+  public getById(id: number): Observable<Brewery> {
     return this.http.get<Brewery>(`/breweries/${id}`);
+  }
+
+  public getBeers(id: number): Observable<Beer[]> {
+    return this.http.get<Beer[]>(`/breweries/${id}/beers`);
   }
 }

@@ -16,7 +16,7 @@ export class BreweriesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.breweriesService.findAll().subscribe(breweries => this.breweries = breweries);
+    this.breweriesService.getList().subscribe(breweries => this.breweries = breweries);
   }
 
 }

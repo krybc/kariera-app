@@ -9,11 +9,11 @@ export class ElementsService {
     private http: HttpClient,
   ) { }
 
-  public findAll(ids: number[] = null): Observable<Element[]> {
+  public getList(ids: number[] = null): Observable<Element[]> {
     return this.http.get<Element[]>('/elements');
   }
 
-  public findById(id: number): Observable<Element> {
+  public getById(id: number): Observable<Element> {
     return this.http.get<Element>(`/elements/${id}`);
   }
 }
