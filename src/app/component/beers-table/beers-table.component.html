@@ -1,7 +1,7 @@
 <table mat-table [dataSource]="beers" fxFlex="100">
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Nazwa </th>
-    <td mat-cell *matCellDef="let element" [routerLink]="['beers', element.id]"> {{element.name}} </td>
+    <td mat-cell *matCellDef="let element" [routerLink]="['/beers', element.id]"> {{element.name}} </td>
   </ng-container>
 
   <ng-container matColumnDef="alcohol">
@@ -18,7 +18,7 @@
     <th mat-header-cell *matHeaderCellDef> Ilość składników </th>
     <td mat-cell *matCellDef="let element">
       <mat-chip-list>
-        <mat-chip>{{element.elementsId.length}}</mat-chip>
+        <mat-chip>{{element.elementsCount}}</mat-chip>
       </mat-chip-list>
     </td>
   </ng-container>

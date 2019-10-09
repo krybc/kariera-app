@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {BeersService} from '../../service/beers.service';
-import {Beer} from '../../model/beer';
-import {CategoriesService} from '../../service/categories.service';
+import {BeerDataProvider} from '../../data-provider/beer.data-provider';
+import {BeerViewModel} from '../../model/shared/beer.view.model';
 
 @Component({
   selector: 'app-beers',
@@ -9,17 +8,15 @@ import {CategoriesService} from '../../service/categories.service';
   styleUrls: ['./beers.component.scss']
 })
 export class BeersComponent implements OnInit {
-  beers: Beer[];
+  beers: BeerViewModel[];
 
   constructor(
-    private beersService: BeersService,
-    private categoriesService: CategoriesService,
+    private dataProvider: BeerDataProvider,
   ) { }
 
   ngOnInit() {
-    this.beersService.getList().subscribe(result => {
-      this.beers = result;
-    });
+    this.dataProvider
+      .getList()
+      .subscribe(result => this.beers = result);
   }
-
 }

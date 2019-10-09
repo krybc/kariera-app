@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Beer} from '../../model/beer';
+import {BeerViewModel} from '../../model/shared/beer.view.model';
 
 @Component({
   selector: 'app-beers-table',
@@ -7,7 +7,7 @@ import {Beer} from '../../model/beer';
   styleUrls: ['./beers-table.component.scss']
 })
 export class BeersTableComponent implements OnInit {
-  @Input() beers: Beer[];
+  @Input() beers: BeerViewModel[];
   beersTableColumns: string[] = ['name', 'alcohol', 'pasteurized', 'elementsCount'];
 
   constructor() { }

@@ -1,4 +1,4 @@
-import {BeerStrengthEnum} from '../enum/beer-strength.enum';
+import {BeerStrengthEnum} from '../../enum/beer-strength.enum';
 import {Exclude, Expose, Transform, Type} from 'class-transformer';
 import {Brewery} from './brewery';
 import {Category} from './category';

@@ -14,18 +14,17 @@ import {
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
-import {BeersService} from './service/beers.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RequestInterceptor} from './interceptor/request.interceptor';
 import { BeerComponent } from './container/beer/beer.component';
-import {ElementsService} from './service/elements.service';
-import {BreweriesService} from './service/breweries.service';
 import { BreweriesComponent } from './container/breweries/breweries.component';
 import { BreweryComponent } from './container/brewery/brewery.component';
-import {CategoriesService} from './service/categories.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BeersTableComponent } from './component/beers-table/beers-table.component';
 import { BooleanPipe } from './pipe/boolean.pipe';
+import {ApiModule} from './api/api.module';
+import {BeerDataProvider} from './data-provider/beer.data-provider';
+import {BreweryDataProvider} from './data-provider/brewery.data-provider';
 
 @NgModule({
   declarations: [
@@ -51,12 +50,11 @@ import { BooleanPipe } from './pipe/boolean.pipe';
     HttpClientModule,
     MatListModule,
     MatChipsModule,
+    ApiModule,
   ],
   providers: [
-    BeersService,
-    ElementsService,
-    BreweriesService,
-    CategoriesService,
+    BeerDataProvider,
+    BreweryDataProvider,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,

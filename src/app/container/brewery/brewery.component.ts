@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Brewery} from '../../model/brewery';
-import {BreweriesService} from '../../service/breweries.service';
 import {ActivatedRoute} from '@angular/router';
-import {Beer} from '../../model/beer';
-import {BeersService} from '../../service/beers.service';
-import {forkJoin} from 'rxjs';
+import {BreweryDataProvider} from '../../data-provider/brewery.data-provider';
+import {BreweryViewModel} from '../../model/brewery/brewery.view.model';
+import {LoadingEnum} from '../../enum/loading.enum';
 
 @Component({
   selector: 'app-brewery',
@@ -12,26 +10,22 @@ import {forkJoin} from 'rxjs';
   styleUrls: ['./brewery.component.scss']
 })
 export class BreweryComponent implements OnInit {
-  public brewery: Brewery = null;
-  public beers: Beer[];
+  public loading: string = LoadingEnum.pending;
+  public brewery: BreweryViewModel = null;
 
   constructor(
     private route: ActivatedRoute,
-    private breweriesService: BreweriesService,
-    private beersService: BeersService,
+    private dataProvider: BreweryDataProvider
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const result = forkJoin(
-        this.breweriesService.getById(+params.id),
-        this.breweriesService.getBeers(+params.id)
-      );
-
-      result.subscribe(([brewery, beers]: [Brewery, Beer[]]) => {
-        this.brewery = brewery;
-        this.beers = beers;
-      });
+      this.dataProvider
+        .getById(+params.id)
+        .subscribe((brewery: BreweryViewModel) => {
+          this.brewery = brewery;
+          this.loading = LoadingEnum.success;
+        });
     });
   }
 

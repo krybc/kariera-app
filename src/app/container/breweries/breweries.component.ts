@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Brewery} from '../../model/brewery';
-import {BreweriesService} from '../../service/breweries.service';
+import {BreweryDataProvider} from '../../data-provider/brewery.data-provider';
+import {BreweryViewModel} from '../../model/shared/brewery.view.model';
 
 @Component({
   selector: 'app-breweries',
@@ -8,15 +8,17 @@ import {BreweriesService} from '../../service/breweries.service';
   styleUrls: ['./breweries.component.scss']
 })
 export class BreweriesComponent implements OnInit {
-  public breweries: Brewery[];
+  public breweries: BreweryViewModel[];
   breweriesTableColumns: string[] = ['name', 'beersCount'];
 
   constructor(
-    private breweriesService: BreweriesService,
+    private dataProvider: BreweryDataProvider,
   ) { }
 
   ngOnInit() {
-    this.breweriesService.getList().subscribe(breweries => this.breweries = breweries);
+    this.dataProvider
+      .getList()
+      .subscribe(breweries => this.breweries = breweries);
   }
 
 }

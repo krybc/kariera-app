@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Beer} from '../../model/beer';
-import {BeersService} from '../../service/beers.service';
 import {ActivatedRoute} from '@angular/router';
-import {forkJoin} from 'rxjs';
-import {Element} from '../../model/element';
-import {BreweriesService} from '../../service/breweries.service';
-import {flatMap, tap} from 'rxjs/operators';
-import {Brewery} from '../../model/brewery';
 import {LoadingEnum} from '../../enum/loading.enum';
-import {Comment} from '../../model/comment';
+import {BeerDataProvider} from '../../data-provider/beer.data-provider';
+import {BeerViewModel} from '../../model/beer/beer.view.model';
 
 @Component({
   selector: 'app-beer',
@@ -17,37 +11,21 @@ import {Comment} from '../../model/comment';
 })
 export class BeerComponent implements OnInit {
   public loading: string = LoadingEnum.pending;
-  public beer: Beer = null;
-  public brewery: Brewery;
-  public elements: Element[];
-  public comments: Comment[];
+  public beer: BeerViewModel = null;
 
   constructor(
     private route: ActivatedRoute,
-    private beersService: BeersService,
-    private breweriesService: BreweriesService,
+    private dataProvider: BeerDataProvider,
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const result = forkJoin(
-        this.beersService.getById(+params.id),
-        this.beersService.getComments(+params.id),
-        this.beersService.getElements(+params.id)
-      );
-
-      result.pipe(
-        flatMap(([beer, comments, elements]: [Beer, Comment[], Element[]]) => {
+      this.dataProvider
+        .getById(+params.id)
+        .subscribe((beer: BeerViewModel) => {
           this.beer = beer;
-          this.comments = comments;
-          this.elements = elements;
-          return this.breweriesService.getById(beer.breweryId);
-        }),
-        tap((brewery: Brewery) => {
-          this.brewery = brewery;
           this.loading = LoadingEnum.success;
-        })
-      ).subscribe();
+        });
     });
   }
 }

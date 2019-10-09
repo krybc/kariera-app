@@ -3,7 +3,7 @@
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{ beer.name }}</mat-card-title>
-        <mat-card-subtitle>Browar: {{ brewery.name }}</mat-card-subtitle>
+        <mat-card-subtitle>Browar: {{ beer.brewery.name }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <div fxLayout="row" fxLayoutAlign="space-around center">
@@ -31,7 +31,7 @@
 
             <h3>Składniki</h3>
             <p>
-              <span *ngFor="let element of elements">{{ element.name }},</span>
+              <span *ngFor="let element of beer.elements">{{ element.name }},</span>
             </p>
           </div>
         </div>
@@ -46,7 +46,7 @@
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div *ngFor="let comment of comments">
+        <div *ngFor="let comment of beer.comments">
           <h5>{{ comment.author }}</h5>
           <p>{{ comment.content }}</p>
           <hr>
