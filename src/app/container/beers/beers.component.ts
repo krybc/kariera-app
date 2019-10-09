@@ -15,7 +15,10 @@ export class BeersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.beersService.getList().subscribe(result => this.beers = result);
+    this.beersService.getList().subscribe(result => {
+      console.log(result);
+      this.beers = result;
+    });
   }
 
 }
