@@ -7,6 +7,7 @@ export class Beer {
   breweryId: number;
   categoryId: number;
   alcohol: number;
+  pasteurized: boolean;
   elementsId: number[];
   commentsId: number[];
   imageUrl: string;
