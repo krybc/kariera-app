@@ -7,10 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './shared/layout/layout.component';
 import {
   MatButtonModule,
-  MatCardModule,
-  MatChipsModule,
+  MatCardModule, MatCheckboxModule,
+  MatChipsModule, MatFormFieldModule, MatInputModule,
   MatListModule,
-  MatMenuModule,
+  MatMenuModule, MatSnackBarModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
@@ -25,6 +25,8 @@ import { BooleanPipe } from './pipe/boolean.pipe';
 import {ApiModule} from './api/api.module';
 import {BeerDataProvider} from './data-provider/beer.data-provider';
 import {BreweryDataProvider} from './data-provider/brewery.data-provider';
+import {BeerEditComponent} from './container/beer-edit/beer-edit.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import {BreweryDataProvider} from './data-provider/brewery.data-provider';
     BeersComponent,
     LayoutComponent,
     BeerComponent,
+    BeerEditComponent,
     BreweriesComponent,
     BreweryComponent,
     BeersTableComponent,
@@ -51,6 +54,11 @@ import {BreweryDataProvider} from './data-provider/brewery.data-provider';
     MatListModule,
     MatChipsModule,
     ApiModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatCheckboxModule,
   ],
   providers: [
     BeerDataProvider,

@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Beer } from '../model/beer';
 import {map} from 'rxjs/operators';
-import {plainToClass} from 'class-transformer';
+import {classToPlain, plainToClass} from 'class-transformer';
 import {Comment} from '../model/comment';
 import {Element} from '../model/element';
 
@@ -50,6 +50,14 @@ export class BeersService {
       .get<Element[]>(`/beers/${id}/elements`)
       .pipe(
         map(result => plainToClass(Element, result as object[]))
+      );
+  }
+
+  public update(beer: Beer): Observable<Beer> {
+    return this.http
+      .put<Beer>(`/beers/${beer.id}`, classToPlain(beer))
+      .pipe(
+        map(result => plainToClass(Beer, result as object))
       );
   }
 }

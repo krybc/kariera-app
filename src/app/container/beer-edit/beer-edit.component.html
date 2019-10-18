@@ -1,0 +1,25 @@
+<div *ngIf="loading === 'success'" fxLayout="row" fxFlex="100" fxLayoutAlign="center none">
+  <div fxFlex="50">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ beer.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="form" (submit)="onSubmit()" fxLayout="column">
+          <mat-form-field>
+            <input matInput formControlName="name" placeholder="Nazwa">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="alcohol" placeholder="Alkohol">
+          </mat-form-field>
+          <mat-checkbox formControlName="pasteurized">Pasteryzowane</mat-checkbox>
+          <mat-form-field>
+            <textarea matInput matTextareaAutosize formControlName="description" placeholder="Opis"></textarea>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit">Zapisz</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

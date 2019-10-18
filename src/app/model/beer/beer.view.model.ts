@@ -18,8 +18,16 @@ export class BeerViewModel extends BaseBeerViewModel {
   toApiModel(): Beer {
     return Object.assign(this.apiModel, {
       breweryId: this.brewery.id,
+      name: this.name,
+      alcohol: this.alcohol,
+      pasteurized: this.pasteurized,
+      description: this.description,
       commentsId: this.comments.map(comment => comment.id),
       elementsId: this.elements.map(element => element.id)
     });
+  }
+
+  applyFormValue(value: object): BeerViewModel {
+    return Object.assign(this, value);
   }
 }

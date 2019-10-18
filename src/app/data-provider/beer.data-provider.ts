@@ -54,4 +54,12 @@ export class BeerDataProvider {
       })
     );
   }
+
+  update(beer: BeerViewModel): Observable<boolean> {
+    return this.beersService
+      .update(beer.toApiModel())
+      .pipe(
+        map(result => true)
+      );
+  }
 }

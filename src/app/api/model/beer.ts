@@ -11,11 +11,11 @@ export class Beer {
   id: number;
 
   @Expose()
-  @Transform((value) => Date.parse(value), { toClassOnly: true })
+  @Transform((value) => new Date(value), { toClassOnly: true })
   @Transform((value: Date) => value.toISOString(), { toPlainOnly: true })
   createdAt: Date;
 
-  @Expose({ name: 'title' })
+  @Expose()
   name: string;
 
   @Expose()
