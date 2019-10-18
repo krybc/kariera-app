@@ -15,7 +15,7 @@ export class Beer {
   @Transform((value: Date) => value.toISOString(), { toPlainOnly: true })
   createdAt: Date;
 
-  @Expose()
+  @Expose({ name: 'title' })
   name: string;
 
   @Expose()
